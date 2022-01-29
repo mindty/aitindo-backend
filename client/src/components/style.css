@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@0;1&family=Mochiy+Pop+P+One&display=swap");
+
+.input-todo .bt-add {
+  background-color: #b2acfa;
+  border: none;
+  font-weight: bold;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.input-todo .bt-add:hover {
+  background-color: #7f76e2;
+  border: none;
+  font-weight: bold;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.input-todo .bt-add:active,
+.input-todo .bt-add:focus {
+  outline: none !important;
+  outline-offset: none !important;
+}
+
+.add-todo {
+  color: #b2acfa;
+}
+
+.container-list {
+  padding-right: 2em;
+  padding-left: 2em;
+}
+
+.title-list {
+  font-family: "Mochiy Pop P One", sans-serif;
+  margin-bottom: 1em;
+}
+
+.list-todo {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.cek-list:checked {
+  background-color: #7f76e2;
+}
+
+.icon-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-list:hover {
+  color: #7f76e2;
+}
+
+.edit-todo {
+  text-align: center;
+  font-family: "Mochiy Pop P One", sans-serif;
+  color: #7f76e2;
+  margin-bottom: 1em;
+}
+
+.divButton .btEdit {
+  border: none;
+  background-color: #7f76e2;
+}
+
+.divButton .btEdit:hover {
+  border: none;
+  background-color: #5b5c9c;
+}
+
+/* Style Loading */
+.container-loading {
+  overflow: hidden;
+  width: 100%;
+  height: 40vh;
+}
+
+.loading {
+  margin-left: 20px;
+  color: #5b5c9c;
+}
