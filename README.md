@@ -14,6 +14,6 @@
 4. Buka terminal / command prompt dan arahkan ke directory tempat anda menyimpan file. Bisa juga menggunakan terminal pada text editor.
 5. Buka folder "server" melalui terminal dan jalankan "npm i", tunggu hingga instalasi selesai.
 6. Buka folder "client" melalui terminal dan jalankan "npm i", tunggu hingga instalasi selesai.
-7. Jika sudah, ketik "npm start", tunggu sesaat hingga aplikasi berhasil dijalankan pada browser. 
+7. Jika sudah, tetap pada folder client ketik "npm start", tunggu sesaat hingga aplikasi berhasil dijalankan pada browser. 
 
 ### link github : https://github.com/mindty/aitindo-backend
