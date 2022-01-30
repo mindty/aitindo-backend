@@ -2,10 +2,19 @@ import React, { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { Form, Button, Modal, Spinner } from "react-bootstrap";
-
+import axios from "axios";
 import "./style.css";
 
 const ListToDo = () => {
+  const [todo, setTodo] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/api/getAllToDo").then((response) => {
+      setTodo(response.data);
+    });
+  }, [todo]);
+
+  // ------------ FORM -------------------------//
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -25,6 +34,7 @@ const ListToDo = () => {
       });
   };
 
+  // ------------ CEK ERROR -------------------------//
   const findFormErrors = () => {
     const newErrors = {};
     //todos errors
@@ -33,12 +43,20 @@ const ListToDo = () => {
     return newErrors;
   };
 
+  // ------------ LOADING -------------------------//
   const [loading, setLoading] = useState(false);
 
+  // ------------ DELETE -------------------------//
   const [showDel, setShowDel] = useState(false);
   const handleCloseDel = () => setShowDel(false);
   const handleShowDel = () => setShowDel(true);
 
+  const handleDel = (e) => {
+    e.preventDefault();
+    setLoading(true);
+  };
+
+  // ------------ UPDATE -------------------------//
   const [showUpdate, setShowUpdate] = useState(false);
   const handleCloseUpdate = () => setShowUpdate(false);
   const handleShowUpdate = () => setShowUpdate(true);
@@ -53,11 +71,6 @@ const ListToDo = () => {
     } else {
       setLoading(true);
     }
-  };
-
-  const handleDel = (e) => {
-    e.preventDefault();
-    setLoading(true);
   };
 
   if (loading) {
@@ -102,6 +115,39 @@ const ListToDo = () => {
             <RiDeleteBinFill />
           </div>
         </div>
+
+        {todo.map((value) => {
+          return (
+            <div className="row">
+              <div className="list-todo col-md-10 col-sm-5">
+                <Form>
+                  <div key="default-checkbox" className="mb-3">
+                    <Form.Check
+                      type="checkbox"
+                      id="default-checkbox"
+                      className="cek-list"
+                      label={value.name}
+                    />
+                  </div>
+                </Form>
+              </div>
+
+              <div
+                className="icon-list col-md-1 col-sm-1"
+                onClick={handleShowUpdate}
+              >
+                <BiEdit />
+              </div>
+
+              <div
+                className="icon-list col-md-1 col-sm-1"
+                onClick={handleShowDel}
+              >
+                <RiDeleteBinFill />
+              </div>
+            </div>
+          );
+        })}
 
         {/* Modal Edit ToDo */}
         <Modal
