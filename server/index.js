@@ -51,6 +51,15 @@ app.post("/api/addToDo", (req, res) => {
   })
 })
 
+app.delete("/api/deleteToDo", (req, res) =>{
+  const id_todo = req.body.id
+  const sqlDelete = "DELETE FROM todos WHERE id = ?;";
+  db.query(sqlDelete, id_todo, (err, result) => {
+    console.log(result);
+    if(err) console.log(err);
+  })
+})
+
 app.listen(3001, () =>{
   console.log("running on port 3001");
 });
