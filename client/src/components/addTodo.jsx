@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { InputGroup, Button, Form } from "react-bootstrap";
+import axios from "axios";
+import swal from "sweetalert";
+import { InputGroup, Button, Form, Spinner } from "react-bootstrap";
 import "./style.css";
 
 const AddToDo = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+
+  const [loading, setLoading] = useState(false);
 
   const { newtodo } = form;
 
@@ -38,14 +42,53 @@ const AddToDo = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      //kalo gaada error sini
+      // setLoading(true);
+
+      const data = {
+        name: newtodo,
+        status: "ongoing",
+      };
+
+      console.log("data1", data);
+
+      axios
+        .post("http://localhost:3001/api/addToDo", data)
+        .then(() => {
+          swal({
+            text: "success",
+            icon: "success",
+          });
+
+          console.log("data2", data);
+
+          // setLoading(false);
+        })
+        .catch(() => {
+          swal({
+            text: "error",
+            icon: "error",
+          });
+
+          // setLoading(false);
+        });
     }
   };
+
+  if (loading) {
+    return (
+      <>
+        <div className="container-loading d-flex justify-content-center align-items-center">
+          <Spinner className="loading" animation="grow" size="sm" />
+          <Spinner className="loading" animation="grow" />
+          <Spinner className="loading" animation="grow" size="sm" />
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       <div>
-        {/* <InputGroup className="input-todo mb-4"> */}
         <InputGroup className="input-todo mb-4">
           <Form.Control
             placeholder="what need to be done?"
